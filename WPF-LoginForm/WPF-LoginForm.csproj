@@ -117,10 +117,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\back-image.jpg" />
-    <Resource Include="Images\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\5.jpg" />
   </ItemGroup>
   <ItemGroup>
