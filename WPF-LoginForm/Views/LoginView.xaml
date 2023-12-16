@@ -58,7 +58,7 @@
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
 
-                    <ToggleButton x:Name="toggleDarkTheme" Content="Тёмная тема" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="toggleDarkTheme_Checked"/>
+                    <ToggleButton x:Name="toggleDarkTheme" Content="dark theme" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="toggleDarkTheme_Checked"/>
                     <Button x:Name="btnMinimize"
                             BorderThickness="0"
                             Foreground="White"
