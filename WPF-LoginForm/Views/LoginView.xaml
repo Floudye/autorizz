@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF_LoginForm.Views"
         xmlns:viewModel="clr-namespace:WPF_LoginForm.ViewModels"
         xmlns:customcontrols="clr-namespace:WPF_LoginForm.CustomControls"
         mc:Ignorable="d"
@@ -58,7 +57,11 @@
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
 
+<<<<<<< HEAD
                     <ToggleButton x:Name="toggleDarkTheme" Content="dark theme" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="toggleDarkTheme_Checked"/>
+=======
+                    <ToggleButton x:Name="toggleDarkTheme" Content="сменить тему" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="toggleDarkTheme_Checked" Margin="10,0,0,0"/>
+>>>>>>> d470d20b5b525284f0573fefcf7a17a7dd52ae98
                     <Button x:Name="btnMinimize"
                             BorderThickness="0"
                             Foreground="White"
