@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WPF_LoginForm.Models;
 using WPF_LoginForm.Repositories;
+using WPF_LoginForm.Views;
 
 namespace WPF_LoginForm.ViewModels
 {
@@ -20,6 +21,8 @@ namespace WPF_LoginForm.ViewModels
         private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
+        private LoginView loginView = LoginView.loginView;
+        public static LoginViewModel loginViewModel;
 
         private IUserRepository userRepository;
 
@@ -89,6 +92,7 @@ namespace WPF_LoginForm.ViewModels
         //Constructor
         public LoginViewModel()
         {
+            loginViewModel = this;
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
@@ -110,13 +114,13 @@ namespace WPF_LoginForm.ViewModels
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
             if (isValidUser)
             {
-                Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
-                IsViewVisible = false;
+                MainView window = new MainView();
+                window.Show();
+                loginView.Close();
             }
             else
             {
-                ErrorMessage = "* Invalid username or password";
+                ErrorMessage = "неверный пароль или логин";
             }
         }
 

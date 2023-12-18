@@ -1,5 +1,5 @@
 ﻿<Window x:Class="WPF_LoginForm.Views.MainView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,13 +9,85 @@
         Title="MainWindowView" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
 
-    <Window.DataContext>
-        <viewModel:MainViewModel/>
-    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="TabStripPlacement" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <!-- Adjust as needed -->
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Vertical Tab headers -->
+                            <TabPanel Grid.Column="0" Panel.ZIndex="1" IsItemsHost="True" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="150"/>
+                            <!-- Adjust Width as needed -->
+
+                            <!-- Tab content -->
+                            <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                                <ContentPresenter ContentSource="SelectedContent"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border>
+                            <Grid Height="80">
+                                <!-- Adjust Height as needed -->
+                                <Border x:Name="border" Background="Transparent" Height="60" Width="150">
+                                    <!-- Adjust Width and Height as needed -->
+                                    <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter TargetName="border" Property="Background" Value="#2E2E2E"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Foreground" Value="Gray"/>
+                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
-                   FontSize="30"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+        <TabControl>
+            <TabItem Header="Tab 1">
+                <Grid>
+                    <TextBlock Text="Content for Tab 1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Tab 2">
+                <Grid>
+                    <TextBlock Text="Content for Tab 2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Tab 3">
+                <Grid>
+                    <TextBlock Text="Content for Tab 3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
+    

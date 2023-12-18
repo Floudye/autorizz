@@ -49,7 +49,6 @@ namespace WPF_LoginForm.ViewModels
             else
             {
                 CurrentUserAccount.DisplayName="Invalid user, not logged in";
-                //Hide child views.
             }
         }
     }
