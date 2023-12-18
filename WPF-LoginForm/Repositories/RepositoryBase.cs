@@ -18,5 +18,23 @@ namespace WPF_LoginForm.Repositories
         {
             return new SqlConnection(_connectionString);
         }
+        public bool logcheck(string Username)
+        {
+            bool exists;
+
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT COUNT(*) FROM [users] WHERE Username=@Username";
+                command.Parameters.AddWithValue("@Username", Username);
+
+                exists = (int)command.ExecuteScalar() > 0;
+            }
+
+            return exists;
+        }
+
     }
 }

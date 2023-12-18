@@ -14,6 +14,7 @@ namespace WPF_LoginForm.Models
         void Edit(UserModel userModel);
         void Remove(int id);
         void CreateUser(string login, string password);
+        bool logcheck(string Username);
         UserModel GetById(int id);
 
         UserModel GetByUsername(string username);

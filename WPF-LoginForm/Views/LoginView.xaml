@@ -122,7 +122,15 @@
                     </Button>
                 </Grid>
 
-                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="54,35,63,0" Visibility="{Binding FirstStackPanelVisibility}">
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="50,0,50,0" Visibility="{Binding FirstStackPanelVisibility}">
+                    <TextBlock Text="Войдите в аккаунт!"
+                                Foreground="DarkGray"
+                                FontSize="16"
+                                HorizontalAlignment="Center"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Margin="0,5,0,0"/>  
+
                     <TextBlock Text="Username"
                                Foreground="DarkGray"
                                FontSize="12"
@@ -163,7 +171,7 @@
                          Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="13"
                          FontWeight="Medium"
-                         FontFamily="Montserrat"
+                         FontFamily="Segoe MDL2 Assets"
                          Foreground="White"
                          CaretBrush="LightGray"
                          BorderBrush="DarkGray"
@@ -196,7 +204,7 @@
                             FontSize="12"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Margin="0,30,0,0" Click="btnLogin_Click">
+                            Margin="0,30,0,0">
 
                         <Button.Style>
                             <Style TargetType="Button">
@@ -237,7 +245,14 @@
 
 
 
-                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="54,35,63,0" Visibility="{Binding SecondStackPanelVisibility}">
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="50,0,50,0" Visibility="{Binding SecondStackPanelVisibility}">
+                    <TextBlock Text="Зарегистрируйтесь!"
+                               Foreground="DarkGray"
+                               FontSize="16"
+                               HorizontalAlignment="Center"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Margin="0,5,0,0"/>          
                     <TextBlock Text="Username"
                                Foreground="DarkGray"
                                FontSize="12"
@@ -266,7 +281,7 @@
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Password"
+                    <TextBlock Text="Confirm password"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -278,7 +293,7 @@
                          Text="{Binding Firstpassword, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="13"
                          FontWeight="Medium"
-                         FontFamily="Montserrat"
+                         FontFamily="Segoe MDL2 Assets"
                          Foreground="White"
                          CaretBrush="LightGray"
                          BorderBrush="DarkGray"
@@ -309,7 +324,7 @@
                         Text="{Binding Lastpassword, UpdateSourceTrigger=PropertyChanged}"
                         FontSize="13"
                         FontWeight="Medium"
-                        FontFamily="Montserrat"
+                        FontFamily="Segoe MDL2 Assets"
                         Foreground="White"
                         CaretBrush="LightGray"
                         BorderBrush="DarkGray"
@@ -337,7 +352,7 @@
                     <Button x:Name="btReg"
                             Command="{Binding RegistrationCommand}"
                             BorderThickness="0"
-                            Content="Sign In"
+                            Content="Sign UP"
                             Foreground="Black"
                             FontSize="12"
                             FontFamily="Montserrat"
@@ -368,7 +383,7 @@
                     </Button>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
-                        <Button Content="Sign Up"
+                        <Button Content="Sign In"
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Command="{Binding SwapVisabilityCommand}"

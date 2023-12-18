@@ -155,14 +155,18 @@ namespace WPF_LoginForm.ViewModels
         }
         private void ExecuteRegisterCommand(object parameter)
         {
-            if (Firstpassword == Lastpassword)
+            if (userRepository.logcheck(Username))
             {
-                userRepository.CreateUser(Username, Firstpassword);
-                MessageBox.Show("Пользователь создан!");
+                ErrorMessage = "Такой пользователь уже существует";
+            }
+            else if (Firstpassword != Lastpassword)
+            {
+                ErrorMessage = "Первый пароль не совпадает с вторым";
             }
             else
             {
-                MessageBox.Show("Пароли не совпадают");
+                userRepository.CreateUser(Username, Firstpassword);
+                SwapVisibility(Username);
             }
         }
         private bool CanExecuteRegisterCommand(object obj)
@@ -199,6 +203,7 @@ namespace WPF_LoginForm.ViewModels
                 ErrorMessage = "неверный пароль или логин";
             }
         }
+
 
         private void ExecuteRecoverPassCommand(string username, string email)
         {

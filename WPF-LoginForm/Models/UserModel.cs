@@ -14,5 +14,6 @@ namespace WPF_LoginForm.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Number { get; set; }
+        public string AccesLvl { get; set; }
     }
 }

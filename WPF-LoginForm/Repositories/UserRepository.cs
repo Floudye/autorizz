@@ -67,6 +67,7 @@ namespace WPF_LoginForm.Repositories
                             Name = reader[3].ToString(),
                             Surname = reader[4].ToString(),
                             Number = reader[5].ToString(),
+                            AccesLvl = reader[6].ToString(),
                         };
                     }
                 }
@@ -84,7 +85,7 @@ namespace WPF_LoginForm.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "insert into [User] (Username , Password) " + "values (@Username, @Password)";
+                command.CommandText = "insert into [users] (Username , Password) " + "values (@Username, @Password)";
                 command.Parameters.AddWithValue("@Username", login);
                 command.Parameters.AddWithValue("@Password", password);
                 command.ExecuteNonQuery();
