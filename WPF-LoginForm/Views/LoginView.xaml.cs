@@ -19,10 +19,10 @@ namespace WPF_LoginForm.Views
     /// </summary>
     public partial class LoginView : Window
     {
-        public static LoginView loginView;
+        public static LoginView loginview;
         public LoginView()
         {
-            loginView = this;
+            loginview = this;
             InitializeComponent();
         }
 
@@ -41,6 +41,5 @@ namespace WPF_LoginForm.Views
         {
             Application.Current.Shutdown();
         }
-        private void btnLogin_Click(object sender, RoutedEventArgs e) { }
     }
 }

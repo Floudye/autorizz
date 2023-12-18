@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Security;
@@ -7,6 +8,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WPF_LoginForm.Models;
 using WPF_LoginForm.Repositories;
@@ -18,12 +20,15 @@ namespace WPF_LoginForm.ViewModels
     {
         //Fields
         private string _username;
-        private SecureString _password;
+        private string _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
-        private LoginView loginView = LoginView.loginView;
+        private LoginView loginView = LoginView.loginview;
         public static LoginViewModel loginViewModel;
-
+        private string firstpassword;
+        private string lastpassword;
+        private Visibility firstStackPanelVisibility = Visibility.Visible;
+        private Visibility secondStackPanelVisibility = Visibility.Hidden;
         private IUserRepository userRepository;
 
         //Properties
@@ -40,8 +45,34 @@ namespace WPF_LoginForm.ViewModels
                 OnPropertyChanged(nameof(Username));
             }
         }
+       
+        public string Firstpassword
+        {
+            get
+            {
+                return firstpassword;
+            }
 
-        public SecureString Password
+            set
+            {
+                firstpassword = value;
+                OnPropertyChanged(nameof(firstpassword));
+            }
+        }
+        public string Lastpassword
+        {
+            get
+            {
+                return lastpassword;
+            }
+
+            set
+            {
+                lastpassword = value;
+                OnPropertyChanged(nameof(lastpassword));
+            }
+        }
+        public string Password
         {
             get
             {
@@ -69,6 +100,26 @@ namespace WPF_LoginForm.ViewModels
             }
         }
 
+        public Visibility FirstStackPanelVisibility
+        {
+            get => firstStackPanelVisibility;
+            set
+            {
+                firstStackPanelVisibility = value;
+                OnPropertyChanged(nameof(FirstStackPanelVisibility));
+            }
+        }
+
+        public Visibility SecondStackPanelVisibility
+        {
+            get => secondStackPanelVisibility;
+            set
+            {
+                secondStackPanelVisibility = value;
+                OnPropertyChanged(nameof(SecondStackPanelVisibility));
+            }
+        }
+
         public bool IsViewVisible
         {
             get
@@ -88,6 +139,9 @@ namespace WPF_LoginForm.ViewModels
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
         public ICommand RememberPasswordCommand { get; }
+        public ICommand RegistrationCommand { get; }
+        public ICommand SwapVisabilityCommand { get; }
+        
 
         //Constructor
         public LoginViewModel()
@@ -95,9 +149,26 @@ namespace WPF_LoginForm.ViewModels
             loginViewModel = this;
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+            RegistrationCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
+            SwapVisabilityCommand = new ViewModelCommand(SwapVisibility);
         }
-
+        private void ExecuteRegisterCommand(object parameter)
+        {
+            if (Firstpassword == Lastpassword)
+            {
+                userRepository.CreateUser(Username, Firstpassword);
+                MessageBox.Show("Пользователь создан!");
+            }
+            else
+            {
+                MessageBox.Show("Пароли не совпадают");
+            }
+        }
+        private bool CanExecuteRegisterCommand(object obj)
+        {
+            return true;
+        }
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
@@ -109,6 +180,11 @@ namespace WPF_LoginForm.ViewModels
             return validData;
         }
 
+        public void SwapVisibility(object obj)
+        {
+            FirstStackPanelVisibility = FirstStackPanelVisibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+            SecondStackPanelVisibility = SecondStackPanelVisibility == Visibility.Visible ? Visibility.Hidden : Visibility.Visible;
+        }
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));

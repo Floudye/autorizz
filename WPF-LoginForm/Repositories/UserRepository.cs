@@ -77,5 +77,19 @@ namespace WPF_LoginForm.Repositories
         {
             throw new NotImplementedException();
         }
+        public void CreateUser(string login, string password)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "insert into [User] (Username , Password) " + "values (@Username, @Password)";
+                command.Parameters.AddWithValue("@Username", login);
+                command.Parameters.AddWithValue("@Password", password);
+                command.ExecuteNonQuery();
+
+            }
+        }
     }
 }
