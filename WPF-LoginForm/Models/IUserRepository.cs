@@ -9,6 +9,8 @@ namespace WPF_LoginForm.Models
 {
     public interface IUserRepository
     {
+        void EditUser(string newusername, string newpassword, string newname, string newaccesslvl);
+        void DeleteUsername(int userId);
         bool AuthenticateUser(NetworkCredential credential);
         void Add(UserModel userModel);
         void Edit(UserModel userModel);

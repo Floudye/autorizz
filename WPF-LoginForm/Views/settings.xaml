@@ -7,22 +7,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="settings">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <!-- первая строка занимает всю доступную высоту -->
             <RowDefinition Height="Auto"/>
-            <!-- вторая строка подстроится под содержимое -->
         </Grid.RowDefinitions>
-
         <local:Toggle x:Name="BtnToggle"
                       Width="40" 
                       Height="30"
                       MouseLeftButtonDown="SwitchToggle_MouseLeftButtonDown"
                       VerticalAlignment="Top"/>
-        <!-- выравнивание кнопки вверх -->
-
         <TextBlock Text="сменить тему" Foreground="AliceBlue" HorizontalAlignment="Center"
                    Margin="35"/>
     </Grid>

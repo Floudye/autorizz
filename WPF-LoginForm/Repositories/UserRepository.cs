@@ -65,14 +65,48 @@ namespace WPF_LoginForm.Repositories
                             Username = reader[1].ToString(),
                             Password = string.Empty,
                             Name = reader[3].ToString(),
-                            Surname = reader[4].ToString(),
-                            Number = reader[5].ToString(),
-                            AccesLvl = reader[6].ToString(),
+                            AccessLvl = reader[4].ToString(),
                         };
                     }
                 }
             }
             return user;
+        }
+        public void DeleteUsername(int userId)
+        {
+            SqlConnection connection = new SqlConnection("Data Source=USER\\BATOSHA;Initial Catalog=mvvm;Integrated Security=True");
+            string cmd = "DELETE FROM [users] WHERE Id = @Id";
+            SqlCommand deleteCommand = new SqlCommand(cmd, connection);
+            deleteCommand.Parameters.AddWithValue("@Id", userId);
+
+            try
+            {
+                connection.Open();
+                deleteCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public void EditUser(string newusername, string newpassword, string newname, string newaccesslvl)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "UPDATE [users] SET Password = @Password, Name=@Name, AccessLvl = @AccessLvl where Username = @Username";
+                command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = newusername;
+                command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = newpassword;
+                command.Parameters.Add("@Name", (object)newname ?? DBNull.Value);
+                command.Parameters.Add("@AccessLvl", SqlDbType.NVarChar).Value = newaccesslvl;
+                command.ExecuteNonQuery();
+            }
         }
         public void Remove(int id)
         {
@@ -85,10 +119,10 @@ namespace WPF_LoginForm.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "insert into [users] (Username , Password, AccessLvl) " + "values (@Username, @Password, @Acceslvl)";
+                command.CommandText = "insert into [users] (Username , Password, AccessLvl) " + "values (@Username, @Password, @AccessLvl)";
                 command.Parameters.AddWithValue("@Username", login);
                 command.Parameters.AddWithValue("@Password", password);
-                command.Parameters.AddWithValue("@Acceslvl", acceslvl);
+                command.Parameters.AddWithValue("@AccessLvl", acceslvl);
                 command.ExecuteNonQuery();
 
             }
@@ -112,8 +146,9 @@ namespace WPF_LoginForm.Repositories
                             Username = reader["Username"].ToString(),
                             Password = reader["Password"].ToString(),
                             Name = reader["Name"].ToString(),
-                            Surname = reader["Surname"].ToString(),
-                            Number = reader["Number"].ToString()
+                            AccessLvl = reader["AccessLvl"].ToString(),
+
+
                         };
                         users.Add(user);
                     }

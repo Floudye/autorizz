@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Security;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
@@ -20,6 +21,9 @@ namespace WPF_LoginForm.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         //Fields
+        private int id;
+        private IUserRepository userEditor;
+        private IUserRepository userDelete;
         private string _username;
         private string _password;
         private string _errorMessage;
@@ -69,7 +73,35 @@ namespace WPF_LoginForm.ViewModels
             set
             {
                 firstpassword = value;
-                OnPropertyChanged(nameof(firstpassword));
+                OnPropertyChanged(nameof(Firstpassword));
+            }
+        }
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+        private string access;
+        public string AccessLvl
+        {
+            get
+            {
+                return access;
+            }
+
+            set
+            {
+                access = value;
+                OnPropertyChanged(nameof(AccessLvl));
             }
         }
 
@@ -83,7 +115,7 @@ namespace WPF_LoginForm.ViewModels
             set
             {
                 lastpassword = value;
-                OnPropertyChanged(nameof(lastpassword));
+                OnPropertyChanged(nameof(Lastpassword));
             }
         }
         public string Password
@@ -123,7 +155,19 @@ namespace WPF_LoginForm.ViewModels
                 OnPropertyChanged(nameof(FirstStackPanelVisibility));
             }
         }
-
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+        
         public Visibility SecondStackPanelVisibility
         {
             get => secondStackPanelVisibility;
@@ -155,11 +199,16 @@ namespace WPF_LoginForm.ViewModels
         public ICommand RememberPasswordCommand { get; }
         public ICommand RegistrationCommand { get; }
         public ICommand SwapVisabilityCommand { get; }
-        
+        public ICommand AddCommand { get; }
+        public ICommand DeleteCommand { get; }
+        public ICommand EditCommand { get; }
+
 
         //Constructor
         public LoginViewModel()
         {
+            userDelete = new UserRepository();
+            userEditor = new UserRepository();
             Users = new ObservableCollection<UserModel>(dbL.GetAllUsers());
             loginViewModel = this;
             userRepository = new UserRepository();
@@ -167,6 +216,23 @@ namespace WPF_LoginForm.ViewModels
             RegistrationCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
             SwapVisabilityCommand = new ViewModelCommand(SwapVisibility);
+            DeleteCommand = new ViewModelCommand(DeleteUser);
+            EditCommand = new ViewModelCommand(Edit);
+        }
+
+        private void DeleteUser(object parameter)
+        {
+            userDelete.DeleteUsername(Id);
+            string message = "Пользователь был удален";
+            MessageBox.Show(message);
+            Users = new ObservableCollection<UserModel>(dbL.GetAllUsers());
+        }
+        private void Edit(object parameter)
+        {
+            userEditor.EditUser(Username,Password,Name, AccessLvl);
+            string message = "Пользователь был отредактирован.";
+            MessageBox.Show(message);
+            Users = new ObservableCollection<UserModel>(dbL.GetAllUsers());
         }
         private void ExecuteRegisterCommand(object parameter)
         {

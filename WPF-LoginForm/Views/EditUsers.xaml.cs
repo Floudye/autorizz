@@ -16,18 +16,14 @@ using System.Windows.Shapes;
 namespace WPF_LoginForm.Views
 {
     /// <summary>
-    /// Логика взаимодействия для BDGrid.xaml
+    /// Логика взаимодействия для EditUsers.xaml
     /// </summary>
-    public partial class BDGrid : Page
+    public partial class EditUsers : Page
     {
-        public BDGrid()
+        public EditUsers()
         {
             InitializeComponent();
         }
 
-        private void edit_click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new EditUsers();
-        }
     }
 }

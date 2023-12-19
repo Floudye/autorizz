@@ -12,18 +12,29 @@
     <Page.DataContext>
         <viewModel:LoginViewModel />
     </Page.DataContext>
-    
+
     <Grid>
-        <DataGrid x:Name="DG" Background="Transparent" HeadersVisibility="Column" AutoGenerateColumns="False" IsReadOnly="True"  ItemsSource="{Binding Users}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" x:Name="DG" Background="Transparent" HeadersVisibility="Column" AutoGenerateColumns="False" IsReadOnly="True"  ItemsSource="{Binding Users}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Password"  Binding="{Binding Password}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Number" Binding="{Binding Number}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="AccessLvl" Binding="{Binding AccessLvl}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Grid Grid.Row="1">
+            <Button Height="30" Click="edit_click" Width="120" Background="Transparent">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="//Images/4.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock Text="Редактировать" Foreground="AliceBlue"/>
+                </StackPanel>
+            </Button>
+        </Grid>
         <Frame  NavigationUIVisibility="Hidden"  Name="MainFrame" Margin="50 15 50 15"/>
     </Grid>
 </Page>

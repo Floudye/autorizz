@@ -44,7 +44,7 @@ namespace WPF_LoginForm.ViewModels
             if (user != null)
             {
                 CurrentUserAccount.Username = user.Username;
-                CurrentUserAccount.DisplayName = $"Welcome {user.Name} {user.Surname} ;)";
+                CurrentUserAccount.DisplayName = $"Welcome {user.Name} ;)";
                 CurrentUserAccount.ProfilePicture = null;               
             }
             else
