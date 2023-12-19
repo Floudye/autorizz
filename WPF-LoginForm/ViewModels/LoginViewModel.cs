@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -24,6 +25,8 @@ namespace WPF_LoginForm.ViewModels
         private string _errorMessage;
         private bool _isViewVisible = true;
         private LoginView loginView = LoginView.loginview;
+        public UserRepository dbL = new UserRepository();
+        private ObservableCollection<UserModel> users;
         public static LoginViewModel loginViewModel;
         private string firstpassword;
         private string lastpassword;
@@ -32,6 +35,16 @@ namespace WPF_LoginForm.ViewModels
         private IUserRepository userRepository;
 
         //Properties
+
+        public ObservableCollection<UserModel> Users
+        {
+            get => users;
+            set
+            {
+                users = value;
+                OnPropertyChanged(nameof(Users));
+            }
+        }
         public string Username
         {
             get
@@ -59,6 +72,7 @@ namespace WPF_LoginForm.ViewModels
                 OnPropertyChanged(nameof(firstpassword));
             }
         }
+
         public string Lastpassword
         {
             get
@@ -146,6 +160,7 @@ namespace WPF_LoginForm.ViewModels
         //Constructor
         public LoginViewModel()
         {
+            Users = new ObservableCollection<UserModel>(dbL.GetAllUsers());
             loginViewModel = this;
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
@@ -165,7 +180,7 @@ namespace WPF_LoginForm.ViewModels
             }
             else
             {
-                userRepository.CreateUser(Username, Firstpassword);
+                userRepository.CreateUser(Username, Firstpassword, "user");
                 SwapVisibility(Username);
             }
         }

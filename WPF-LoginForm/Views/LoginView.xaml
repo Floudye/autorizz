@@ -155,7 +155,15 @@
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user.png"
                                         Stretch="Uniform"
-                                        AlignmentX="Left"/>
+                                        AlignmentX="Left">
+                                <ImageBrush.ViewportUnits>
+                                    <BrushMappingMode>RelativeToBoundingBox</BrushMappingMode>
+                                </ImageBrush.ViewportUnits>
+                                <ImageBrush.Viewport>
+                                    <Rect>0,0.25,1.85,0.70</Rect>
+                                </ImageBrush.Viewport>
+                            </ImageBrush>
+  
                         </TextBox.Background>
                     </TextBox>
 
@@ -183,8 +191,15 @@
 
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/key.png"
-                    Stretch="Uniform"
-                    AlignmentX="Left"/>
+            Stretch="Uniform"
+            AlignmentX="Left">
+                                <ImageBrush.ViewportUnits>
+                                    <BrushMappingMode>RelativeToBoundingBox</BrushMappingMode>
+                                </ImageBrush.ViewportUnits>
+                                <ImageBrush.Viewport>
+                                    <Rect>0,0.25,1.85,0.80</Rect>
+                                </ImageBrush.Viewport>
+                            </ImageBrush>
                         </TextBox.Background>
                     </TextBox>
 
@@ -276,12 +291,19 @@
 
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user.png"
-                                        Stretch="Uniform"
-                                        AlignmentX="Left"/>
+            Stretch="Uniform"
+            AlignmentX="Left">
+                                <ImageBrush.ViewportUnits>
+                                    <BrushMappingMode>RelativeToBoundingBox</BrushMappingMode>
+                                </ImageBrush.ViewportUnits>
+                                <ImageBrush.Viewport>
+                                    <Rect>0,0.25,1.85,0.70</Rect>
+                                </ImageBrush.Viewport>
+                            </ImageBrush>
                         </TextBox.Background>
                     </TextBox>
 
-                    <TextBlock Text="Confirm password"
+                    <TextBlock Text="Password"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -305,14 +327,21 @@
 
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/key.png"
-                    Stretch="Uniform"
-                    AlignmentX="Left"/>
+                                Stretch="Uniform"
+                                AlignmentX="Left">
+                                <ImageBrush.ViewportUnits>
+                                    <BrushMappingMode>RelativeToBoundingBox</BrushMappingMode>
+                                </ImageBrush.ViewportUnits>
+                                <ImageBrush.Viewport>
+                                    <Rect>0,0.25,1.85,0.80</Rect>
+                                </ImageBrush.Viewport>
+                            </ImageBrush>
                         </TextBox.Background>
                     </TextBox>
 
 
 
-                    <TextBlock Text="Password"
+                    <TextBlock Text="Confirm password"
                       Foreground="DarkGray"
                       FontSize="12"
                       FontWeight="Medium"
@@ -336,8 +365,15 @@
 
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/key.png"
-           Stretch="Uniform"
-           AlignmentX="Left"/>
+                                        Stretch="Uniform"
+                                        AlignmentX="Left">
+                                <ImageBrush.ViewportUnits>
+                                    <BrushMappingMode>RelativeToBoundingBox</BrushMappingMode>
+                                </ImageBrush.ViewportUnits>
+                                <ImageBrush.Viewport>
+                                    <Rect>0,0.25,1.85,0.80</Rect>
+                                </ImageBrush.Viewport>
+                            </ImageBrush>
                         </TextBox.Background>
                     </TextBox>
                     

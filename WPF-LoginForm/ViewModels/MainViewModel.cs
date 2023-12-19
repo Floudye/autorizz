@@ -37,6 +37,7 @@ namespace WPF_LoginForm.ViewModels
             LoadCurrentUserData();
         }
 
+        
         private void LoadCurrentUserData()
         {
             var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);

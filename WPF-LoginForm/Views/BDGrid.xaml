@@ -1,0 +1,29 @@
+﻿<Page x:Class="WPF_LoginForm.Views.BDGrid"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_LoginForm.Views"
+      xmlns:viewModel="clr-namespace:WPF_LoginForm.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BDGrid">
+
+    <Page.DataContext>
+        <viewModel:LoginViewModel />
+    </Page.DataContext>
+    
+    <Grid>
+        <DataGrid x:Name="DG" Background="Transparent" HeadersVisibility="Column" AutoGenerateColumns="False" IsReadOnly="True"  ItemsSource="{Binding Users}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Password"  Binding="{Binding Password}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Number" Binding="{Binding Number}" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Frame  NavigationUIVisibility="Hidden"  Name="MainFrame" Margin="50 15 50 15"/>
+    </Grid>
+</Page>

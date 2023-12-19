@@ -78,19 +78,48 @@ namespace WPF_LoginForm.Repositories
         {
             throw new NotImplementedException();
         }
-        public void CreateUser(string login, string password)
+        public void CreateUser(string login, string password, string acceslvl)
         {
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "insert into [users] (Username , Password) " + "values (@Username, @Password)";
+                command.CommandText = "insert into [users] (Username , Password, AccessLvl) " + "values (@Username, @Password, @Acceslvl)";
                 command.Parameters.AddWithValue("@Username", login);
                 command.Parameters.AddWithValue("@Password", password);
+                command.Parameters.AddWithValue("@Acceslvl", acceslvl);
                 command.ExecuteNonQuery();
 
             }
+        }
+        public List<UserModel> GetAllUsers()
+        {
+            List<UserModel> users = new List<UserModel>();
+
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand("select * from [users]", connection))
+            {
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var user = new UserModel
+                        {
+                            Id = Convert.ToInt32(reader["Id"]).ToString(),
+                            Username = reader["Username"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            Surname = reader["Surname"].ToString(),
+                            Number = reader["Number"].ToString()
+                        };
+                        users.Add(user);
+                    }
+                }
+            }
+            return users;
         }
     }
 }

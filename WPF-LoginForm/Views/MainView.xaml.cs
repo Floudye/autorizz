@@ -23,5 +23,25 @@ namespace WPF_LoginForm.Views
         {
             InitializeComponent();
         }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void bd_click(object sender, MouseButtonEventArgs e)
+        {
+            MainFrane.Content = new BDGrid();
+        }
+
+        private void setting_click(object sender, MouseButtonEventArgs e)
+        {
+            MainFrane.Content = new settings();
+        }
     }
 }

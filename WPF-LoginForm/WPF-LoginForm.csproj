@@ -68,18 +68,48 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\BDGrid.xaml.cs">
+      <DependentUpon>BDGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainFrameManager.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Views\settings.xaml.cs">
+      <DependentUpon>settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Toggle.xaml.cs">
+      <DependentUpon>Toggle.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\BDGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Light.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Toggle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,6 +148,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\3.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
