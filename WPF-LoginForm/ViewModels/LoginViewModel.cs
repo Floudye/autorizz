@@ -37,6 +37,7 @@ namespace WPF_LoginForm.ViewModels
         private Visibility firstStackPanelVisibility = Visibility.Visible;
         private Visibility secondStackPanelVisibility = Visibility.Hidden;
         private IUserRepository userRepository;
+        private UserModel CurrentUser;
 
         //Properties
 
@@ -207,6 +208,7 @@ namespace WPF_LoginForm.ViewModels
         //Constructor
         public LoginViewModel()
         {
+            AddCommand = new ViewModelCommand(Add, CanAdd);
             userDelete = new UserRepository();
             userEditor = new UserRepository();
             Users = new ObservableCollection<UserModel>(dbL.GetAllUsers());
@@ -220,6 +222,17 @@ namespace WPF_LoginForm.ViewModels
             EditCommand = new ViewModelCommand(Edit);
         }
 
+        private void Add(object parametr)
+        {
+            userRepository.Add(Username, Password, Name, AccessLvl);
+            string message = "Admin добавил данные пользователя.";
+            MessageBox.Show(message);
+        }
+
+        private bool CanAdd(object parametr)
+        {
+            return true;
+        }
         private void DeleteUser(object parameter)
         {
             userDelete.DeleteUsername(Id);
@@ -275,16 +288,35 @@ namespace WPF_LoginForm.ViewModels
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
             if (isValidUser)
             {
-                MainView window = new MainView();
-                window.Show();
-                loginView.Close();
+                CurrentUser = dbL.GetByUsername(Username);
+                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+
+                // Открывайте окно в зависимости от роли
+                OpenWindowBasedOnRole(CurrentUser.AccessLvl);
             }
             else
             {
                 ErrorMessage = "неверный пароль или логин";
             }
+                        
         }
-
+        private void OpenWindowBasedOnRole(string role)
+        {
+            if (role == "admin")
+            {
+                MainView adminWindow = new MainView();
+                Application.Current.MainWindow.Close();
+                Application.Current.MainWindow = adminWindow;
+                adminWindow.Show();
+            }
+            else if (role == "user")
+            {
+                UserWindows userWindow = new UserWindows();
+                Application.Current.MainWindow.Close();
+                Application.Current.MainWindow = userWindow;
+                userWindow.Show();
+            }
+        }
 
         private void ExecuteRecoverPassCommand(string username, string email)
         {

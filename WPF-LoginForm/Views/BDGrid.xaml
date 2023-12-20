@@ -18,7 +18,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" x:Name="DG" Background="Transparent" HeadersVisibility="Column" AutoGenerateColumns="False" IsReadOnly="True"  ItemsSource="{Binding Users}">
+        <DataGrid Grid.Row="0" BorderThickness="0" Grid.Column="0" x:Name="DG" Background="Transparent" HeadersVisibility="Column" AutoGenerateColumns="False" IsReadOnly="True"  ItemsSource="{Binding Users}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="*"></DataGridTextColumn>
@@ -28,12 +28,32 @@
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="1">
-            <Button Height="30" Click="edit_click" Width="120" Background="Transparent">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="//Images/4.png" Width="16" Height="16" Margin="0,0,5,0"/>
-                    <TextBlock Text="Редактировать" Foreground="AliceBlue"/>
-                </StackPanel>
-            </Button>
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Height="30" Click="edit_click" Width="120" Background="Transparent" Margin="5 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/4.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                        <TextBlock Text="Редактировать" Foreground="AliceBlue"/>
+                    </StackPanel>
+                </Button>
+                <Button Height="30" Click="add_click" Width="120" Background="Transparent"  Margin="5 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/6.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                        <TextBlock Text="Добавить" Foreground="AliceBlue"/>
+                    </StackPanel>
+                </Button>
+                <Button Height="30" Click="delete_click" Width="120" Background="Transparent"  Margin="5 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/5.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                        <TextBlock Text="Удалить" Foreground="AliceBlue"/>
+                    </StackPanel>
+                </Button>
+                <Button Height="30" Click="Refresh_click" Width="120" Background="Transparent"  Margin="5 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/8.png" Width="16" Height="16" Margin="0,0,5,0"/>
+                        <TextBlock Text="Обновить" Foreground="AliceBlue"/>
+                    </StackPanel>
+                </Button>
+            </WrapPanel>
         </Grid>
         <Frame  NavigationUIVisibility="Hidden"  Name="MainFrame" Margin="50 15 50 15"/>
     </Grid>

@@ -12,9 +12,21 @@ namespace WPF_LoginForm.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public void Add(UserModel userModel)
+        public void Add(string Username, string Password, string Name, string accesslvl)
         {
-            throw new NotImplementedException();
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "insert into [users] (Username , Password, Name, AccessLvl) " +
+                                          "values (@Username, @Password, @Name, @AccessLvl)";
+                    command.Parameters.Add("@Username", SqlDbType.NVarChar).Value = Username;
+                    command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = Password;
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = Name;
+                    command.Parameters.Add("@AccessLvl", SqlDbType.NVarChar).Value = accesslvl;
+                    command.ExecuteNonQuery();
+                }
         }
 
         public bool AuthenticateUser(NetworkCredential credential)

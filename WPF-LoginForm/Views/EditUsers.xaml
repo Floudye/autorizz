@@ -5,17 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_LoginForm.Views"
       xmlns:viewModel="clr-namespace:WPF_LoginForm.ViewModels"
-      mc:Ignorable="d" d:DesignWidth="800"
-      Title="EditUsers" Height="505">
+      mc:Ignorable="d"
+       d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="EditUsers">
 
     <Page.DataContext>
         <viewModel:LoginViewModel />
     </Page.DataContext>
 
-    <Grid Margin="0,0,0,60" Background="#E0FFFF">
+    <Grid Opacity="0.8">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#FF4682B4" Offset="0"/>
+                <GradientStop Color="DarkBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -26,15 +32,18 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Foreground="Blue" ><Run Text="                  "/><LineBreak/><Run/><LineBreak/><Run Text="          Username"/></TextBlock>
-        <TextBox Grid.Column="1" Width="250" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Margin="75,32,75,11"/>
-        <TextBlock Grid.Row="1" Foreground="Blue" ><Run/><LineBreak/><Run/><LineBreak/><Run Text="          Password"/></TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="250" Margin="75,31,75,11" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Grid.Row="2" Foreground="Blue" ><Run Text=" "/><LineBreak/><Run Text="           Name"/></TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" Width="250" Margin="75,22,75,22" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Grid.Row="3" Foreground="Blue" ><Run Text="           "/><LineBreak/><Run/><Run Text="           AccessLvl"/></TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" Width="250" Margin="75,10,75,30" Text="{Binding AccessLvl, UpdateSourceTrigger=PropertyChanged}"/>
-        <Button Grid.Row="3" Content="EDIT"  Command="{Binding EditCommand}" Grid.Column="0" Margin="200,63,0,32" Background="Cyan" Grid.RowSpan="2">
+        <TextBlock Foreground="AliceBlue" Text="Username"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"></TextBlock>
+        <TextBox Grid.Column="1" Width="250" Height="30" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle}"/>
+        <TextBlock Grid.Row="1" Foreground="AliceBlue" Text="Password"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" ></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="250" Height="30" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource TextBoxStyle}"/>
+        <TextBlock Grid.Row="2" Foreground="AliceBlue" Text="Name"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" ></TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="250" Height="30" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource TextBoxStyle}"/>
+        <TextBlock Grid.Row="3" Foreground="AliceBlue" Text="AccessLvl"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" ></TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Width="250" Height="30" Text="{Binding AccessLvl, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource TextBoxStyle}"/>
+        <Button Grid.Row="4" Grid.Column="1" Command="{Binding EditCommand}" Width="50" Height="50" Background="Transparent" BorderThickness="0">
+            <WrapPanel >
+                <Image Source="/Images/4.png" Width="50" Height="50"/>
+            </WrapPanel>
         </Button>
     </Grid>
 </Page>

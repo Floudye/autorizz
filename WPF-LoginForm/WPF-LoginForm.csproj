@@ -68,11 +68,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BDGrid.xaml.cs">
       <DependentUpon>BDGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditUsers.xaml.cs">
       <DependentUpon>EditUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GridUser.xaml.cs">
+      <DependentUpon>GridUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -88,6 +94,13 @@
     <Compile Include="Views\Toggle.xaml.cs">
       <DependentUpon>Toggle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserWindows.xaml.cs">
+      <DependentUpon>UserWindows.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BDGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +117,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\GridUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,7 +133,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TextBoxStle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Toggle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +192,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
